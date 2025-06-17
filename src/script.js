@@ -20,12 +20,22 @@ for (i = 0; i < close.length; i++) {
 }
 
 // Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
+// Get the lists for open and completed tasks
+var openList = document.getElementById("openTasks");
+var completedList = document.getElementById("completedTasks");
+function handleListClick(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
+
+    if (ev.target.classList.contains('checked')) {
+      completedList.appendChild(ev.target);
+    } else {
+      openList.appendChild(ev.target);
+    }
   }
-}, false);
+}
+openList.addEventListener('click', handleListClick, false);
+completedList.addEventListener('click', handleListClick, false);
 
 // Create a new list item by clicking the "Enter" button
 var enter = document.getElementById("myInput");
@@ -45,7 +55,7 @@ function newElement() {
   if (inputValue === '') {
     alert("You must write something!");
   } else {
-    document.getElementById("myUL").appendChild(li);
+    document.getElementById("openTasks").appendChild(li);
   }
   document.getElementById("myInput").value = "";
 

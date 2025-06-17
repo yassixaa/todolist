@@ -36,6 +36,20 @@ ul li:hover {
   background: #ddd;
 }
 
+/* Add a circle before each list item */
+ul li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  height: 16px;
+  width: 16px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  background: transparent;
+}
+
 /* When clicked on, add a background color and strike out text */
 ul li.checked {
   background: #888;
@@ -45,7 +59,7 @@ ul li.checked {
 
 /* Add a "checked" mark when clicked on */
 ul li.checked::before {
-  content: '';
+  /*content: '';
   position: absolute;
   border-color: #fff;
   border-style: solid;
@@ -54,7 +68,17 @@ ul li.checked::before {
   left: 16px;
   transform: rotate(45deg);
   height: 15px;
-  width: 7px;
+  width: 7px;*/
+
+  content: '✓';
+  color: greenyellow;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: none;
 }
 
 /* Style the close button */
@@ -73,16 +97,21 @@ ul li.checked::before {
 }
 
 /* Style the header */
-.header {
+header {
   background-color: #3678f4;
   padding: 30px 40px;
   color: white;
   text-align: center;
   overflow: hidden;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Clear flex after the header */
-.header:after {
+header:after {
   content: "";
   display: table;
   clear: both;

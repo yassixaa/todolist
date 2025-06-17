@@ -27,6 +27,15 @@ list.addEventListener('click', function(ev) {
   }
 }, false);
 
+// Create a new list item by clicking the "Enter" button
+var enter = document.getElementById("myInput");
+enter.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    newElement();
+  }
+});
+
 // Create a new list item when clicking on the "Add" button
 function newElement() {
   var li = document.createElement("li");

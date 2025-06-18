@@ -15,7 +15,7 @@ def initialize_db():
                 completed BOOLEAN NOT NULL DEFAULT 0
             )
         ''')
-inirialize_db()
+initialize_db()
 
 @app.route('/')
 def index():
@@ -45,9 +45,9 @@ def update_todo(todo_id):
     data = request.json
     with sqlite3.connect('todos.db') as conn:
         c = conn.cursor()
-        c.execute('UPDATE todos SET task = ?, completed = ? WHERE id = ?', (data['text'], data['completed'], todo_id))
+        c.execute('UPDATE todos SET completed = ?  WHERE id = ?', (int(data['completed']), todo_id))
         conn.commit()
-    return jsonify({"id": todo_id, "text": data['text'], "completed": data['completed']})
+    return jsonify(success=True)
 
 @app.route('/todos/<int:todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
